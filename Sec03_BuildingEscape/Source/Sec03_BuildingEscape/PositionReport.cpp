@@ -20,7 +20,7 @@ void UPositionReport::BeginPlay()
 	Super::BeginPlay();
 	FString objName = GetOwner()->GetName();
 	FVector objLoc = GetOwner()->GetTransform().GetLocation();
-	FString objPos = FString::Printf(TEXT("(%f, %f, %f)"), objLoc.X, objLoc.Y, objLoc.Z);
+	FString objPos = objLoc.ToString();
 	UE_LOG(LogTemp, Warning, TEXT("%s is at %s."), *objName, *objPos);
 }
 
