@@ -1,8 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "GameFramework/Actor.h"
+#include "Math/Vector.h"
 #include "PositionReport.h"
-
 
 // Sets default values for this component's properties
 UPositionReport::UPositionReport()
@@ -19,7 +19,9 @@ void UPositionReport::BeginPlay()
 {
 	Super::BeginPlay();
 	FString objName = GetOwner()->GetName();
-	UE_LOG(LogTemp, Warning, TEXT("UPositionReport BeginPlay on %s."), *objName);
+	FVector objLoc = GetOwner()->GetTransform().GetLocation();
+	FString objPos = FString::Printf(TEXT("(%f, %f, %f)"), objLoc.X, objLoc.Y, objLoc.Z);
+	UE_LOG(LogTemp, Warning, TEXT("%s is at %s."), *objName, *objPos);
 }
 
 
@@ -27,7 +29,5 @@ void UPositionReport::BeginPlay()
 void UPositionReport::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
-	// ...
 }
 
